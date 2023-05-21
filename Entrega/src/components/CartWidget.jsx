@@ -5,7 +5,7 @@ export function CartWidget () {
     const {cantidadTotal} = useCartContext()
     return(
         <Link to={'/cartContainer'} className='logo'>
-            <img  src="public/carritoCompras.png"/>
+            <img  src="/carritoCompras.png"/>
             <h1 className="fontSize"> {cantidadTotal() !== 0 && cantidadTotal()} </h1>
         </Link>
     )
