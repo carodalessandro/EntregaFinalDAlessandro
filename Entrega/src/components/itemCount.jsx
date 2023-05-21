@@ -1,29 +1,19 @@
-import { useState } from "react"
+import {useCounter} from "../hook/useCouter"
 
-
-export function ItemCount() {
+export const ItemCount = ({initial= 1, stock= 5, onAdd}) => {
     
-    const [counter,setCounter] = useState(1)
-
-    let handleCount
-    let restCount
-
-    if (counter<5) {
-        handleCount = () => {
-            setCounter(counter + 1)
-        }
-    }
-    if (counter > 1) {
-        restCount = () => {
-            setCounter(counter - 1)
-        }
-    }
-    
+    const {counter, handleSumar, handleRestar} = useCounter(initial, 1, stock)
+   
     return(
-        <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button onClick={handleCount} className="btn btn-dark"> +1 </button>
-            <p className="fontCounter">{counter}</p>
-            <button onClick={restCount} className="btn btn-dark"> -1 </button>
+        <div>
+            <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button onClick={handleSumar} className="btn btn-dark"> +1 </button>
+                <p className="fontCounter">{counter}</p>
+                <button onClick={handleRestar} className="btn btn-dark"> -1 </button>
+                <div className= "d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button onClick={ () => onAdd(counter) } className="btn btn-dark">Agregar al carrito</button>
+                </div>
+            </div>
         </div>
     )
 }
